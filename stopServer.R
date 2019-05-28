@@ -10,14 +10,7 @@ set_file_wd = function(){
 }
 set_file_wd()
 
-pid = Sys.getpid()
-cat(pid,file = 'lastpid',append = FALSE)
 
-libPath = normalizePath('packages')
+pid = readLines('lastpid')
 
-.libPaths(libPath)
-
-library(plumber)
-plum = plumb('server.R')
-plum$run(port=8000,swagger = TRUE)
-
+system(paste0('kill -9 ',pid))
