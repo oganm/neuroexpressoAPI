@@ -1,0 +1,8 @@
+ggplot2
+magrittr
+jsonlite
+cowplot
+viridis
+dplyr
+reshape2
+oganm/ogbox

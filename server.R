@@ -7,15 +7,6 @@ library(ogbox)
 library(dplyr)
 library(reshape2)
 
-
-
-# neuroexpresso stuff ---------
-library(cowplot)
-library(viridis)
-library(ogbox)
-library(dplyr)
-library(reshape2)
-
 exprs  = readRDS('Data/exprs.rds')
 designs = readRDS('Data/designs.rds')
 genes = readRDS('Data/genes.rds')
