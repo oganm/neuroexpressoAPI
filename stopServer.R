@@ -1,9 +1,3 @@
-libPath = normalizePath('packages')
-.libPaths(libPath)
-
-
-library(here)
-
 set_file_wd = function(){
     command = commandArgs(trailingOnly = FALSE)
     
@@ -13,6 +7,12 @@ set_file_wd = function(){
     }
 }
 set_file_wd()
+
+libPath = normalizePath('packages')
+.libPaths(libPath)
+
+setwd(here())
+
 
 
 pid = readLines('lastpid')
