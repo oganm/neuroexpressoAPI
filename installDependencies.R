@@ -14,7 +14,7 @@ remote = dependencies[grepl('/',dependencies)]
 
 installed = installed.packages()
 
-install.packages(dependencies[!dependencies %in% installed],lib = libPath,repos = 'https://cran.rstudio.com')
+install.packages(local[!local %in% installed],lib = libPath,repos = 'https://cran.rstudio.com')
 
 for(package in remote){
     devtools::install_github(package,lib = libPath)
