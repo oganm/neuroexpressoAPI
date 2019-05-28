@@ -1,4 +1,5 @@
 libPath = normalizePath('packages')
+.libPaths(libPath)
 
 
 library(here)
@@ -17,7 +18,6 @@ pid = Sys.getpid()
 cat(pid,file = 'lastpid',append = FALSE)
 
 
-.libPaths(libPath)
 
 library(plumber)
 plum = plumb('server.R')

@@ -1,4 +1,5 @@
 libPath = normalizePath('packages')
+.libPaths(libPath)
 
 
 library(here)
