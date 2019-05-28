@@ -12,7 +12,7 @@ set_file_wd()
 libPath = normalizePath('packages')
 .libPaths(libPath)
 
-setwd(here())
+setwd(here::here())
 
 pid = Sys.getpid()
 cat(pid,file = 'lastpid',append = FALSE)

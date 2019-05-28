@@ -11,7 +11,7 @@ set_file_wd()
 libPath = normalizePath('packages')
 .libPaths(libPath)
 
-setwd(here())
+setwd(here::here())
 
 
 
