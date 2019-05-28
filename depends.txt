@@ -5,4 +5,5 @@ cowplot
 viridis
 dplyr
 reshape2
+plumber
 oganm/ogbox
