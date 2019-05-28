@@ -1,7 +1,6 @@
 library(ggplot2)
 library(magrittr)
 library(jsonlite)
-dir.create('packages',showWarnings = FALSE)
 libPath = normalizePath('packages')
 
 .libPaths(libPath)
