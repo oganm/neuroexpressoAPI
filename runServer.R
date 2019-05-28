@@ -1,3 +1,6 @@
+libPath = normalizePath('packages')
+
+
 library(here)
 
 set_file_wd = function(){
@@ -13,7 +16,6 @@ set_file_wd()
 pid = Sys.getpid()
 cat(pid,file = 'lastpid',append = FALSE)
 
-libPath = normalizePath('packages')
 
 .libPaths(libPath)
 

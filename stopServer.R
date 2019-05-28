@@ -1,3 +1,6 @@
+libPath = normalizePath('packages')
+
+
 library(here)
 
 set_file_wd = function(){
