@@ -7,3 +7,4 @@ dplyr
 reshape2
 plumber
 oganm/ogbox
+oganm/gemmaAPI
