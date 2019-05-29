@@ -1,10 +1,10 @@
-library(ggplot2)
-library(magrittr)
-library(jsonlite)
 libPath = normalizePath('packages')
 
 .libPaths(libPath)
 
+library(ggplot2)
+library(magrittr)
+library(jsonlite)
 library(cowplot)
 library(viridis)
 library(ogbox)
