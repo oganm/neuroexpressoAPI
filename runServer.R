@@ -15,11 +15,11 @@ libPath = normalizePath('packages')
 setwd(here::here())
 
 pid = Sys.getpid()
-cat(pid,file = 'lastpid',append = FALSE)
+cat(pid,file = '/var/run/neapi/neapi.pid',append = FALSE)
 
 
 
 library(plumber)
 plum = plumb('server.R')
-plum$run(port=8000,swagger = TRUE, host="0.0.0.0")
+plum$run(port=8020,swagger = TRUE, host="0.0.0.0")
 
