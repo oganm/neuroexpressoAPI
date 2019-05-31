@@ -1,0 +1,71 @@
+---
+title: "api.neuroexpresso.org"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(httr)
+library(markerGeneProfile)
+library(dplyr)
+library(magick)
+data("mouseRegionHierarchy")
+
+
+getPlot = function(url){
+    f = tempfile()
+    out = httr::GET(url)
+    content(out,as = 'raw', type = 'image/png') %>% writeBin(f)
+    image_read(f)
+}
+```
+
+
+Currently the API has two endpoints, `nx_plot` and `nx_data.`. `nx_plot` returns a png plot
+while `nx_data` returns a JSON file with the same content. Both share the following 
+arguments
+
+- `gene`: Symbol of the requrested gene. Defaults to Ogn
+- `ncbi`: Ncbi ID of the requested gene
+- `ensembl`: Ensembl id of the requested gene
+
+Please provide only one type of gene identifier.
+
+- `region`: Brain region. If provided, only returns samples from the relevant brain region.
+Possible values are `r unlist(mouseRegionHierarchy) %>% names %>%  strsplit('\\.') %>% unlist %>% unique %>% paste(collapse = ', ')`
+- `dataset`: Which dataset to get the data from. Defaults to `GPL339`. Possible values are `GPL339`, `GPL1261` and `RNAseq`. `GPL339` also shows the samples from the GPL1261 platform and RNA-seq clusters but has less gene coverage. `GPL1261` has more gene coverage and also  shows samples from RNA-seq clusters. `RNAseq` has the most gene coverage but only shows the data from the RNA-seq clusters
+
+The `nx_plot` endpoint has an additional `fixed` variable that is `true` or `false`. It is `false` by default. If `true` the axis of the returned plot will be fixed to be able to show the highest and the lowest expressed genes. Used to create plots that are directly comparable to each other.
+
+## Example queries
+
+```
+https://api.neuroexpresso.org/nx_plot?gene=Cox6a2&region=Cortex
+```
+```{r}
+getPlot('https://api.neuroexpresso.org/nx_plot?gene=Cox6a2&region=Cortex')
+```
+
+```
+https://api.neuroexpresso.org/nx_plot?gene=Cox6a2&region=Cortex&fixed=true
+```
+```{r}
+getPlot('https://api.neuroexpresso.org/nx_plot?gene=Cox6a2&region=Cortex&fixed=true')
+```
+
+
+```
+https://api.neuroexpresso.org/nx_plot?ncbi=12862&region=SubstantiaNigra
+```
+
+```{r}
+getPlot('https://api.neuroexpresso.org/nx_plot?ncbi=12862&region=SubstantiaNigra')
+```
+
+
+```
+https://api.neuroexpresso.org/nx_data?ncbi=12862&region=SubstantiaNigra
+```
+```{r}
+cat(httr::content(httr::GET('https://api.neuroexpresso.org/nx_data?ncbi=12862&region=SubstantiaNigra'),encoding = 'UTF-8'))
+```
