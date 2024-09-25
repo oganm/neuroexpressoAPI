@@ -225,12 +225,13 @@ nx_plot = function(gene = 'Ogn',ncbi = NULL, ensembl = NULL, region = 'Cortex',d
     frame$prop %<>% factor(levels = unique(frame$prop))
     
     p = ggplot(frame, aes(y = gene, x = prop, fill = color,shape = rnaSeq)) + geom_point(size = 5) + scale_fill_identity() + 
+        cowplot::theme_cowplot() + 
         theme(axis.text.x = element_text(angle = 90,hjust = 1,vjust = 0.5,size = 16),
               axis.text.y = element_text(size = 16),
               axis.title.y = element_text(size= 16),
               legend.title = element_blank()) + xlab('') +
         scale_shape_manual(values=c(21,24)) + 
-        ylab(paste(genes[[dataset]]$Gene.Symbol[geneRow],'log2 expression')) 
+        ylab(paste(genes[[dataset]]$Gene.Symbol[geneRow],'log2 expression'))
     
     if(fixed){
         p = p + coord_cartesian(ylim = c(minValue, maxValue))
